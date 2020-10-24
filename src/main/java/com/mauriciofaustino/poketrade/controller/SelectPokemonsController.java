@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.sargunvohra.lib.pokekotlin.client.PokeApi;
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
+import me.sargunvohra.lib.pokekotlin.model.NamedApiResourceList;
 import me.sargunvohra.lib.pokekotlin.model.Pokemon;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ public class SelectPokemonsController {
     @RequestMapping("/")
     public String index(Model model) {
         PokeApi pokeApi = new PokeApiClient();
-        var pokemons = pokeApi.getPokemonList(0, 150);
+        NamedApiResourceList pokemons = pokeApi.getPokemonList(0, 150);
         model.addAttribute("pokemons", pokemons);
         return "index.html";
     }
