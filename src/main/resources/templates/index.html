@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head><title>PokeTrade</title></head>
+
+<form action="/trade" method="get" id="form1">
+<select multiple name="player1">
+    <option th:each="pokemon: ${pokemons.results}" th:value="${pokemon.id}">
+        <p th:text="${pokemon.name}" />
+    </option>
+</select>
+
+trocar por:
+
+<select multiple name="player2">
+    <option th:each="pokemon: ${pokemons.results}" th:value="${pokemon.id}">
+        <p th:text="${pokemon.name}" />
+    </option>
+</select>
+
+</form>
+
+<button type="submit" form="form1" value="Submit">Submit</button>
+
+</body>
+</html>
