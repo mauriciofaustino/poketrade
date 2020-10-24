@@ -25,7 +25,7 @@ public class SelectPokemonsController {
     }
 
     @RequestMapping("/trade")
-    public String trade(Model model, String[] player1, String[] player2) {
+    public String trade(Model model, Integer[] player1, Integer[] player2) {
         PokeApi pokeApi = new PokeApiClient();
         List<Pokemon> pokemonsPlayer1 = getPokemons(player1, pokeApi);
         List<Pokemon> pokemonsPlayer2 = getPokemons(player2, pokeApi);
@@ -42,17 +42,17 @@ public class SelectPokemonsController {
                 baseExpPlayer2 - baseExpPlayer1 <= FAIR_FACTOR  ;
     }
 
-    private int getSumBaseExp(List<Pokemon> pokemonsPlayer1) {
-        return pokemonsPlayer1
+    private int getSumBaseExp(List<Pokemon> pokemonsPlayer) {
+        return pokemonsPlayer
                 .stream()
                 .mapToInt(Pokemon::getBaseExperience)
                 .sum();
     }
 
-    private List<Pokemon> getPokemons(String[] player, PokeApi pokeApi) {
+    private List<Pokemon> getPokemons(Integer[] player, PokeApi pokeApi) {
         List<Pokemon> pokemonsPlayer = new ArrayList<>();
-        for (String pokemonId : player) {
-            pokemonsPlayer.add(pokeApi.getPokemon(Integer.parseInt(pokemonId)));
+        for (Integer pokemonId : player) {
+            pokemonsPlayer.add(pokeApi.getPokemon(pokemonId));
         }
         return pokemonsPlayer;
     }
