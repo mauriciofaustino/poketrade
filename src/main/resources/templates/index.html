@@ -2,7 +2,7 @@
 <head><title>PokeTrade</title></head>
 
 <form action="/trade" method="get" id="form1">
-<select multiple name="player1">
+<select multiple name="player1" style="width:200px; height:200px">
     <option th:each="pokemon: ${pokemons.results}" th:value="${pokemon.id}">
         <p th:text="${pokemon.name}" />
     </option>
@@ -10,7 +10,7 @@
 
 trocar por:
 
-<select multiple name="player2">
+<select multiple name="player2" style="width:200px; height:200px">
     <option th:each="pokemon: ${pokemons.results}" th:value="${pokemon.id}">
         <p th:text="${pokemon.name}" />
     </option>

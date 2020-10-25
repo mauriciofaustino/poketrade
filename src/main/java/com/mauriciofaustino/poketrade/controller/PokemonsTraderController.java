@@ -26,6 +26,9 @@ public class PokemonsTraderController {
 
     @RequestMapping("/trade")
     public String trade(Model model, Integer[] player1, Integer[] player2) {
+        if (player1 == null || player2 == null) {
+            return index(model);
+        }
         PokeApi pokeApi = new PokeApiClient();
         List<Pokemon> pokemonsPlayer1 = getPokemons(player1, pokeApi);
         List<Pokemon> pokemonsPlayer2 = getPokemons(player2, pokeApi);
@@ -39,7 +42,7 @@ public class PokemonsTraderController {
 
     private boolean calculateFair(int baseExpPlayer1, int baseExpPlayer2) {
         return baseExpPlayer1 - baseExpPlayer2 <= FAIR_FACTOR &&
-                baseExpPlayer2 - baseExpPlayer1 <= FAIR_FACTOR  ;
+                baseExpPlayer2 - baseExpPlayer1 <= FAIR_FACTOR;
     }
 
     private int getSumBaseExp(List<Pokemon> pokemonsPlayer) {
